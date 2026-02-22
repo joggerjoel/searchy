@@ -13,6 +13,7 @@ import subprocess
 import sys
 import urllib.request
 import webbrowser
+from typing import List, Optional, Tuple
 from urllib.parse import urlparse, urlunparse
 
 from dotenv import load_dotenv
@@ -22,7 +23,7 @@ load_dotenv()
 API_URL = "https://google.serper.dev/search"
 
 
-def _load_sites() -> list[str]:
+def _load_sites() -> List[str]:
     """Load site list from sites.txt (next to this script). Lines starting with - are skipped (disabled)."""
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sites.txt")
     with open(path) as f:
@@ -52,7 +53,7 @@ DATE_PATTERNS = [
 ]
 
 
-def _parse_capture(m: re.Match, pattern_id: int) -> tuple[int, int, int] | None:
+def _parse_capture(m: re.Match, pattern_id: int) -> Optional[Tuple[int, int, int]]:
     """Convert regex match to (year, month, day) by pattern type."""
     try:
         if pattern_id in (0, 2):  # Weekday? Month Day Year  or  Month Day Year
@@ -97,7 +98,7 @@ def _parse_capture(m: re.Match, pattern_id: int) -> tuple[int, int, int] | None:
     return None
 
 
-def extract_date(filepath: str) -> tuple[int, int, int]:
+def extract_date(filepath: str) -> Tuple[int, int, int]:
     """Parse event date from file. Returns (year, month, day)."""
     with open(filepath, "r") as f:
         s = f.read().strip()
@@ -146,10 +147,10 @@ def date_matches_text(year: int, month: int, day: int, text: str) -> bool:
     return False
 
 
-def normalize_and_dedupe_urls(site: str, links: list[str]) -> list[str]:
+def normalize_and_dedupe_urls(site: str, links: List[str]) -> List[str]:
     """Normalize URLs per site and return unique list. dice.fm: only event URL (slug after /event/); ra.co: base URL without query."""
-    seen: set[str] = set()
-    out: list[str] = []
+    seen = set()
+    out = []
     for link in links:
         if not link:
             continue
