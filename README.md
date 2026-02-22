@@ -1,4 +1,4 @@
-# search_short
+# searchy
 
 Searches Serper API for text search. Only prints URLs when the result’s title or snippet contains a date matching the event date from your input file.
 
