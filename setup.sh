@@ -23,4 +23,4 @@ fi
 "$VENV_DIR/bin/pip" install -r "$REQUIREMENTS"
 echo "Installed requirements from requirements.txt"
 
-echo "Done. Use: $SCRIPT_DIR/search_short.sh [search_short.txt]  (uses venv automatically)"
+echo "Done. Use: $SCRIPT_DIR/searchy.sh [searchy.txt]  (uses venv automatically)"

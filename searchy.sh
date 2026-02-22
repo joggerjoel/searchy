@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Driver for search_short.py: reads search_short.txt and searches Serper API for the event
+# Driver for searchy.py: reads searchy.txt and searches Serper API for the event
 # across ticketing sites; only shows URLs when the result date matches the event date.
 # Uses .venv if present (run ./setup.sh first).
-# Usage: ./search_short.sh [file.txt] [--open]
+# Usage: ./searchy.sh [file.txt] [--open]
 #   --open  open each result URL in Google Chrome
 
 set -e
@@ -17,10 +17,10 @@ else
 fi
 
 if [[ $# -eq 0 ]]; then
-  set -- "search_short.txt"
+  set -- "searchy.txt"
 fi
 # Resolve file path for existence check (first arg that isn't --open)
-SHORT_FILE="search_short.txt"
+SHORT_FILE="searchy.txt"
 for a in "$@"; do
   if [[ "$a" != "--open" ]]; then
     SHORT_FILE="$a"
@@ -32,4 +32,4 @@ if [[ ! -f "$SHORT_FILE" ]]; then
   exit 1
 fi
 
-exec "$PYTHON" "$SCRIPT_DIR/search_short.py" "$@"
+exec "$PYTHON" "$SCRIPT_DIR/searchy.py" "$@"

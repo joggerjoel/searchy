@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Reads search_short.txt (or given path) and searches Serper API for the event text
+Reads searchy.txt (or given path) and searches Serper API for the event text
 across multiple ticketing/event sites. Only prints URLs when the result's
 title/snippet contains a date matching the event date from the file.
 """
@@ -20,16 +20,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_URL = "https://google.serper.dev/search"
-SITES = [
-    "dice.fm",
-    "taogroup.com",
-    "ra.co",
-    "eventbrite.com",
-    "universe.com",
-    "posh.vip",
-    "shotgun.live",
-    "crowdvolt.com",
-]
+
+
+def _load_sites() -> list[str]:
+    """Load site list from sites.txt (next to this script)."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sites.txt")
+    with open(path) as f:
+        return [line.strip() for line in f if line.strip()]
+
+
+SITES = _load_sites()
 
 MONTHS = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
@@ -222,7 +222,7 @@ def search_serper(api_key: str, query: str) -> dict:
 def main() -> None:
     args = [a for a in sys.argv[1:] if a != "--open"]
     open_in_chrome = "--open" in sys.argv
-    short_file = args[0] if args else "search_short.txt"
+    short_file = args[0] if args else "searchy.txt"
 
     api_key = os.environ.get("SERPER_API_KEY")
     if not api_key:

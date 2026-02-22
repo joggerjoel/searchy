@@ -26,29 +26,29 @@ Searches Serper API for text search. Only prints URLs when the result’s title 
 
 ## Usage
 
-**Run search (default input: `search_short.txt`)**
+**Run search (default input: `searchy.txt`)**
 
 ```bash
-./search_short.sh
-./search_short.sh path/to/event.txt
+./searchy.sh
+./searchy.sh path/to/event.txt
 ```
 
 **Run search and open each result URL in Chrome**
 
 ```bash
-./search_short.sh --open
-./search_short.sh my_event.txt --open
+./searchy.sh --open
+./searchy.sh my_event.txt --open
 ```
 
 **Run Python directly (e.g. on Windows)**
 
 ```bash
-python search_short.py [file.txt] [--open]
+python searchy.py [file.txt] [--open]
 ```
 
 ## Input file
 
-Put your event text in a file (e.g. `search_short.txt`). The script:
+Put your event text in a file (e.g. `searchy.txt`). The script:
 
 - Uses the first line (or first 3 lines if short) as the search query.
 - Parses an event date from the file and only shows results whose title/snippet contain that date.
