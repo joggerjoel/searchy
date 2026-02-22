@@ -23,10 +23,10 @@ API_URL = "https://google.serper.dev/search"
 
 
 def _load_sites() -> list[str]:
-    """Load site list from sites.txt (next to this script)."""
+    """Load site list from sites.txt (next to this script). Lines starting with - are skipped (disabled)."""
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sites.txt")
     with open(path) as f:
-        return [line.strip() for line in f if line.strip()]
+        return [line.strip() for line in f if line.strip() and not line.strip().startswith("-")]
 
 
 SITES = _load_sites()
