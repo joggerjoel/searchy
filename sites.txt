@@ -6,3 +6,4 @@ universe.com
 posh.vip
 shotgun.live
 crowdvolt.com
+-pl.ra.co
