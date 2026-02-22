@@ -8,10 +8,13 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VENV_PYTHON="$SCRIPT_DIR/.venv/bin/python"
+VENV_PYTHON_BIN="$SCRIPT_DIR/.venv/bin/python"
+VENV_PYTHON_SCRIPTS="$SCRIPT_DIR/.venv/Scripts/python.exe"
 
-if [[ -x "$VENV_PYTHON" ]]; then
-  PYTHON="$VENV_PYTHON"
+if [[ -x "$VENV_PYTHON_BIN" ]]; then
+  PYTHON="$VENV_PYTHON_BIN"
+elif [[ -x "$VENV_PYTHON_SCRIPTS" ]]; then
+  PYTHON="$VENV_PYTHON_SCRIPTS"
 else
   PYTHON="python3"
 fi
