@@ -1,0 +1,3 @@
+# Ensure shell and Python scripts use LF so they run on Cygwin/Windows
+*.sh text eol=lf
+*.py text eol=lf

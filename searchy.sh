@@ -7,7 +7,8 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Use $0 when run with sh (e.g. sh ./searchy.sh); BASH_SOURCE when run with bash
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 VENV_PYTHON_BIN="$SCRIPT_DIR/.venv/bin/python"
 VENV_PYTHON_SCRIPTS="$SCRIPT_DIR/.venv/Scripts/python.exe"
 
